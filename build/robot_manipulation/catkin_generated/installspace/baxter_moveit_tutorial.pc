@@ -1,0 +1,8 @@
+prefix=/home/kentuen/ros_ws/install
+
+Name: baxter_moveit_tutorial
+Description: Description of baxter_moveit_tutorial
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
