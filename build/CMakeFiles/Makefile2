@@ -509,6 +509,24 @@ baxter_simulator/baxter_simulator/preinstall:
 .PHONY : baxter_simulator/baxter_simulator/preinstall
 
 #=============================================================================
+# Directory level rules for directory moveit_python
+
+# Convenience name for "all" pass in the directory.
+moveit_python/all:
+
+.PHONY : moveit_python/all
+
+# Convenience name for "clean" pass in the directory.
+moveit_python/clean:
+
+.PHONY : moveit_python/clean
+
+# Convenience name for "preinstall" pass in the directory.
+moveit_python/preinstall:
+
+.PHONY : moveit_python/preinstall
+
+#=============================================================================
 # Directory level rules for directory baxter_common/rethink_ee_description
 
 # Convenience name for "all" pass in the directory.
