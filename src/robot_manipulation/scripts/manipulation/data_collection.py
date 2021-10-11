@@ -58,29 +58,33 @@ def picknplace():
             data[m,8]=int(row['grippers'])
             m+=1
     print ('step len:',n)
-    col_len=10
+    col_len=3
+    n_epochs=3
 
-    for step in range (col_len):
-        p.waitForSync()        
-        pickgoal = PoseStamped() 
-        pickgoal.header.frame_id = "base"
-        pickgoal.header.stamp = rospy.Time.now()
-        pickgoal.pose.position.x = data[step%2,1]
-        pickgoal.pose.position.y = data[step%2,2]
-        pickgoal.pose.position.z = data[step%2,3]
-        pickgoal.pose.orientation.x = data[step%2,4]
-        pickgoal.pose.orientation.y = data[step%2,5]
-        pickgoal.pose.orientation.z = data[step%2,6]
-        pickgoal.pose.orientation.w = data[step%2,7]
-        gr.moveToPose(pickgoal, "right_gripper", plan_only=False)
-        rospy.sleep(2.0)
-        if data[step%2,8]==0:
-            rightgripper.close()
-        else:
-            rightgripper.open()
-        print ('finished, time:',time.time()-start_time)
-        start_time=time.time()
-    g.moveToJointPosition(jts_both, pos1, plan_only=False)
+    for epoch in range (n_epochs):
+        for step in range (col_len):
+            p.waitForSync()        
+            pickgoal = PoseStamped() 
+            pickgoal.header.frame_id = "base"
+            pickgoal.header.stamp = rospy.Time.now()
+            pickgoal.pose.position.x = data[step%3,1]
+            pickgoal.pose.position.y = data[step%3,2]
+            pickgoal.pose.position.z = data[step%3,3]
+            pickgoal.pose.orientation.x = data[step%3,4]
+            pickgoal.pose.orientation.y = data[step%3,5]
+            pickgoal.pose.orientation.z = data[step%3,6]
+            pickgoal.pose.orientation.w = data[step%3,7]
+            gr.moveToPose(pickgoal, "right_gripper", plan_only=False)
+            rospy.sleep(2.0)
+            if data[step%3,8]==0:
+                rightgripper.close()
+            else:
+                rightgripper.open()
+            print ('finished, time:',time.time()-start_time)
+            start_time=time.time()
+        g.moveToJointPosition(jts_both, pos1, plan_only=False)
+        rospy.sleep(8.0)
+
 if __name__=='__main__':
     try:
         rospy.init_node('pnp', anonymous=True)

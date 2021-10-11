@@ -1,0 +1,8 @@
+prefix=/home/kentuen/ros_ws/devel
+
+Name: image_rotate
+Description: Description of image_rotate
+Version: 1.12.23
+Cflags: -I/home/kentuen/ros_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

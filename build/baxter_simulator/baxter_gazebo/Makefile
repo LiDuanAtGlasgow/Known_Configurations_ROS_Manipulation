@@ -66,49 +66,17 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: install/local
-
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: install/strip
-
-.PHONY : install/strip/fast
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -121,17 +89,49 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: install/strip
+
+.PHONY : install/strip/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: install/local
+
+.PHONY : install/local/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -166,49 +166,34 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule
+baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-controller_manager_msgs_generate_messages_py: baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule
+gazebo_msgs_generate_messages_lisp: baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : controller_manager_msgs_generate_messages_py
+.PHONY : gazebo_msgs_generate_messages_lisp
 
 # fast build rule for target.
-controller_manager_msgs_generate_messages_py/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/build
-.PHONY : controller_manager_msgs_generate_messages_py/fast
+gazebo_msgs_generate_messages_lisp/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build
+.PHONY : gazebo_msgs_generate_messages_lisp/fast
 
 # Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule
+baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-controller_manager_msgs_generate_messages_eus: baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule
+gazebo_msgs_generate_messages_nodejs: baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
 
-.PHONY : controller_manager_msgs_generate_messages_eus
+.PHONY : gazebo_msgs_generate_messages_nodejs
 
 # fast build rule for target.
-controller_manager_msgs_generate_messages_eus/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/build
-.PHONY : controller_manager_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_nodejs: baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/rule
-
-.PHONY : tf_generate_messages_nodejs
-
-# fast build rule for target.
-tf_generate_messages_nodejs/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/build
-.PHONY : tf_generate_messages_nodejs/fast
+gazebo_msgs_generate_messages_nodejs/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
+.PHONY : gazebo_msgs_generate_messages_nodejs/fast
 
 # Convenience name for target.
 baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_cpp.dir/rule:
@@ -226,19 +211,34 @@ tf_generate_messages_cpp/fast:
 .PHONY : tf_generate_messages_cpp/fast
 
 # Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/rule
 
 # Convenience name for target.
-std_srvs_generate_messages_nodejs: baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/rule
+tf_generate_messages_nodejs: baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/rule
 
-.PHONY : std_srvs_generate_messages_nodejs
+.PHONY : tf_generate_messages_nodejs
 
 # fast build rule for target.
-std_srvs_generate_messages_nodejs/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
-.PHONY : std_srvs_generate_messages_nodejs/fast
+tf_generate_messages_nodejs/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_nodejs.dir/build
+.PHONY : tf_generate_messages_nodejs/fast
+
+# Convenience name for target.
+baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+controller_manager_msgs_generate_messages_cpp: baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : controller_manager_msgs_generate_messages_cpp
+
+# fast build rule for target.
+controller_manager_msgs_generate_messages_cpp/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/build
+.PHONY : controller_manager_msgs_generate_messages_cpp/fast
 
 # Convenience name for target.
 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_ros_gencfg.dir/rule:
@@ -286,259 +286,19 @@ tf_generate_messages_eus/fast:
 .PHONY : tf_generate_messages_eus/fast
 
 # Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
 
 # Convenience name for target.
-std_srvs_generate_messages_cpp: baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/rule
+gazebo_msgs_generate_messages_py: baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
 
-.PHONY : std_srvs_generate_messages_cpp
+.PHONY : gazebo_msgs_generate_messages_py
 
 # fast build rule for target.
-std_srvs_generate_messages_cpp/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
-.PHONY : std_srvs_generate_messages_cpp/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_py: baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/rule
-
-.PHONY : std_srvs_generate_messages_py
-
-# fast build rule for target.
-std_srvs_generate_messages_py/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_py.dir/build
-.PHONY : std_srvs_generate_messages_py/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_nodejs: baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_nodejs/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_nodejs.dir/build
-.PHONY : gazebo_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_eus: baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/rule
-
-.PHONY : std_srvs_generate_messages_eus
-
-# fast build rule for target.
-std_srvs_generate_messages_eus/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_eus.dir/build
-.PHONY : std_srvs_generate_messages_eus/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-std_srvs_generate_messages_lisp: baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/rule
-
-.PHONY : std_srvs_generate_messages_lisp
-
-# fast build rule for target.
-std_srvs_generate_messages_lisp/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
-.PHONY : std_srvs_generate_messages_lisp/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_py: baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/rule
-
-.PHONY : tf_generate_messages_py
-
-# fast build rule for target.
-tf_generate_messages_py/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/build
-.PHONY : tf_generate_messages_py/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_cpp: baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_cpp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_cpp/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build
-.PHONY : tf2_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/rule
-
-# Convenience name for target.
-baxter_gazebo_ros_control: baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/rule
-
-.PHONY : baxter_gazebo_ros_control
-
-# fast build rule for target.
-baxter_gazebo_ros_control/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/build
-.PHONY : baxter_gazebo_ros_control/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_cpp: baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_cpp
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_cpp/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
-.PHONY : gazebo_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_lisp: baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_lisp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_lisp/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
-.PHONY : tf2_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-tf_generate_messages_lisp: baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/rule
-
-.PHONY : tf_generate_messages_lisp
-
-# fast build rule for target.
-tf_generate_messages_lisp/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/build
-.PHONY : tf_generate_messages_lisp/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_nodejs: baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-tf2_msgs_generate_messages_nodejs/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
-.PHONY : tf2_msgs_generate_messages_nodejs/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule
-
-# Convenience name for target.
-controller_manager_msgs_generate_messages_cpp: baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/rule
-
-.PHONY : controller_manager_msgs_generate_messages_cpp
-
-# fast build rule for target.
-controller_manager_msgs_generate_messages_cpp/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_cpp.dir/build
-.PHONY : controller_manager_msgs_generate_messages_cpp/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_eus: baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_eus.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_eus
-
-# fast build rule for target.
-tf2_msgs_generate_messages_eus/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
-.PHONY : tf2_msgs_generate_messages_eus/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-
-# Convenience name for target.
-tf2_msgs_generate_messages_py: baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_py.dir/rule
-
-.PHONY : tf2_msgs_generate_messages_py
-
-# fast build rule for target.
-tf2_msgs_generate_messages_py/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
-.PHONY : tf2_msgs_generate_messages_py/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-gazebo_msgs_generate_messages_lisp: baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : gazebo_msgs_generate_messages_lisp
-
-# fast build rule for target.
-gazebo_msgs_generate_messages_lisp/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_lisp.dir/build
-.PHONY : gazebo_msgs_generate_messages_lisp/fast
-
-# Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-controller_manager_msgs_generate_messages_lisp: baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule
-
-.PHONY : controller_manager_msgs_generate_messages_lisp
-
-# fast build rule for target.
-controller_manager_msgs_generate_messages_lisp/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/build
-.PHONY : controller_manager_msgs_generate_messages_lisp/fast
+gazebo_msgs_generate_messages_py/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
+.PHONY : gazebo_msgs_generate_messages_py/fast
 
 # Convenience name for target.
 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_eus.dir/rule:
@@ -556,19 +316,109 @@ gazebo_msgs_generate_messages_eus/fast:
 .PHONY : gazebo_msgs_generate_messages_eus/fast
 
 # Convenience name for target.
-baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
-.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule
 
 # Convenience name for target.
-gazebo_msgs_generate_messages_py: baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/rule
+controller_manager_msgs_generate_messages_lisp: baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/rule
 
-.PHONY : gazebo_msgs_generate_messages_py
+.PHONY : controller_manager_msgs_generate_messages_lisp
 
 # fast build rule for target.
-gazebo_msgs_generate_messages_py/fast:
-	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_py.dir/build
-.PHONY : gazebo_msgs_generate_messages_py/fast
+controller_manager_msgs_generate_messages_lisp/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_lisp.dir/build
+.PHONY : controller_manager_msgs_generate_messages_lisp/fast
+
+# Convenience name for target.
+baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+
+# Convenience name for target.
+gazebo_msgs_generate_messages_cpp: baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/rule
+
+.PHONY : gazebo_msgs_generate_messages_cpp
+
+# fast build rule for target.
+gazebo_msgs_generate_messages_cpp/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/gazebo_msgs_generate_messages_cpp.dir/build
+.PHONY : gazebo_msgs_generate_messages_cpp/fast
+
+# Convenience name for target.
+baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/rule
+
+# Convenience name for target.
+baxter_gazebo_ros_control: baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/rule
+
+.PHONY : baxter_gazebo_ros_control
+
+# fast build rule for target.
+baxter_gazebo_ros_control/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/baxter_gazebo_ros_control.dir/build
+.PHONY : baxter_gazebo_ros_control/fast
+
+# Convenience name for target.
+baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/rule
+
+# Convenience name for target.
+tf_generate_messages_py: baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/rule
+
+.PHONY : tf_generate_messages_py
+
+# fast build rule for target.
+tf_generate_messages_py/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_py.dir/build
+.PHONY : tf_generate_messages_py/fast
+
+# Convenience name for target.
+baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+tf_generate_messages_lisp: baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/rule
+
+.PHONY : tf_generate_messages_lisp
+
+# fast build rule for target.
+tf_generate_messages_lisp/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/tf_generate_messages_lisp.dir/build
+.PHONY : tf_generate_messages_lisp/fast
+
+# Convenience name for target.
+baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule
+
+# Convenience name for target.
+controller_manager_msgs_generate_messages_eus: baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/rule
+
+.PHONY : controller_manager_msgs_generate_messages_eus
+
+# fast build rule for target.
+controller_manager_msgs_generate_messages_eus/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_eus.dir/build
+.PHONY : controller_manager_msgs_generate_messages_eus/fast
+
+# Convenience name for target.
+baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f CMakeFiles/Makefile2 baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule
+.PHONY : baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule
+
+# Convenience name for target.
+controller_manager_msgs_generate_messages_py: baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/rule
+
+.PHONY : controller_manager_msgs_generate_messages_py
+
+# fast build rule for target.
+controller_manager_msgs_generate_messages_py/fast:
+	cd /home/kentuen/ros_ws/build && $(MAKE) -f baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/build.make baxter_simulator/baxter_gazebo/CMakeFiles/controller_manager_msgs_generate_messages_py.dir/build
+.PHONY : controller_manager_msgs_generate_messages_py/fast
 
 src/baxter_gazebo_ros_control_plugin.o: src/baxter_gazebo_ros_control_plugin.cpp.o
 
@@ -604,39 +454,29 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... list_install_components"
-	@echo "... rebuild_cache"
-	@echo "... test"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... controller_manager_msgs_generate_messages_py"
-	@echo "... controller_manager_msgs_generate_messages_eus"
-	@echo "... tf_generate_messages_nodejs"
+	@echo "... gazebo_msgs_generate_messages_lisp"
+	@echo "... gazebo_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_cpp"
-	@echo "... std_srvs_generate_messages_nodejs"
+	@echo "... tf_generate_messages_nodejs"
+	@echo "... install"
+	@echo "... controller_manager_msgs_generate_messages_cpp"
 	@echo "... gazebo_ros_gencfg"
 	@echo "... controller_manager_msgs_generate_messages_nodejs"
 	@echo "... tf_generate_messages_eus"
-	@echo "... std_srvs_generate_messages_cpp"
-	@echo "... std_srvs_generate_messages_py"
-	@echo "... gazebo_msgs_generate_messages_nodejs"
-	@echo "... std_srvs_generate_messages_eus"
-	@echo "... std_srvs_generate_messages_lisp"
-	@echo "... tf_generate_messages_py"
-	@echo "... tf2_msgs_generate_messages_cpp"
-	@echo "... baxter_gazebo_ros_control"
+	@echo "... gazebo_msgs_generate_messages_py"
+	@echo "... gazebo_msgs_generate_messages_eus"
+	@echo "... controller_manager_msgs_generate_messages_lisp"
 	@echo "... gazebo_msgs_generate_messages_cpp"
-	@echo "... tf2_msgs_generate_messages_lisp"
+	@echo "... baxter_gazebo_ros_control"
+	@echo "... tf_generate_messages_py"
 	@echo "... edit_cache"
 	@echo "... tf_generate_messages_lisp"
-	@echo "... tf2_msgs_generate_messages_nodejs"
-	@echo "... install"
-	@echo "... controller_manager_msgs_generate_messages_cpp"
-	@echo "... tf2_msgs_generate_messages_eus"
-	@echo "... tf2_msgs_generate_messages_py"
-	@echo "... gazebo_msgs_generate_messages_lisp"
-	@echo "... controller_manager_msgs_generate_messages_lisp"
-	@echo "... gazebo_msgs_generate_messages_eus"
-	@echo "... gazebo_msgs_generate_messages_py"
+	@echo "... controller_manager_msgs_generate_messages_eus"
+	@echo "... controller_manager_msgs_generate_messages_py"
+	@echo "... test"
+	@echo "... install/strip"
+	@echo "... install/local"
+	@echo "... rebuild_cache"
 	@echo "... src/baxter_gazebo_ros_control_plugin.o"
 	@echo "... src/baxter_gazebo_ros_control_plugin.i"
 	@echo "... src/baxter_gazebo_ros_control_plugin.s"
