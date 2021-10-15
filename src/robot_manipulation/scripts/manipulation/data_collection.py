@@ -59,7 +59,7 @@ def picknplace():
             m+=1
     print ('step len:',n)
     col_len=3
-    n_epochs=3
+    n_epochs=40
 
     for epoch in range (n_epochs):
         for step in range (col_len):
@@ -83,7 +83,7 @@ def picknplace():
             print ('finished, time:',time.time()-start_time)
             start_time=time.time()
         g.moveToJointPosition(jts_both, pos1, plan_only=False)
-        rospy.sleep(8.0)
+        rospy.sleep(15.0)
 
 if __name__=='__main__':
     try:
