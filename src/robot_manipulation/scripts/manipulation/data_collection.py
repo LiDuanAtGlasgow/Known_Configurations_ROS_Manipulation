@@ -59,7 +59,7 @@ def picknplace():
             m+=1
     print ('step len:',n)
     col_len=3
-    n_epochs=40
+    n_epochs=1
 
     for epoch in range (n_epochs):
         for step in range (col_len):
