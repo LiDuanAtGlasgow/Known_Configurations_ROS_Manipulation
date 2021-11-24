@@ -76,6 +76,9 @@ def picknplace():
                 leftgripper.open()
             if grippers[step]=='l_c':
                 leftgripper.close()
+            if grippers[step]=='rl_o':
+                rightgripper.open()
+                leftgripper.open()
             else:
                 p.waitForSync()        
                 pickgoal_r = PoseStamped()
@@ -102,6 +105,11 @@ def picknplace():
                     gr.moveToPose(pickgoal_r, "right_gripper", plan_only=False)
                     rospy.sleep(2.0)
                 if directions[step]=='left':
+                    gl.moveToPose(pickgoal_l, "left_gripper", plan_only=False)
+                    rospy.sleep(2.0)
+                if directions[step]=='both':
+                    gr.moveToPose(pickgoal_r, "right_gripper", plan_only=False)
+                    rospy.sleep(2.0)
                     gl.moveToPose(pickgoal_l, "left_gripper", plan_only=False)
                     rospy.sleep(2.0)
             print ('step',step+1,'finished, time:',time.time()-start_time)

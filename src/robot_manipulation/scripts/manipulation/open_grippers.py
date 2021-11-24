@@ -16,8 +16,8 @@ import numpy as np
 def gripper_open():
     leftgripper = baxter_interface.Gripper('left')
     rightgripper=baxter_interface.Gripper('right')
-    rightgripper.calibrate()
-    rightgripper.open()
+    leftgripper.calibrate()
+    leftgripper.open()
 
 if __name__=='__main__':
     try:
