@@ -18,10 +18,13 @@ def routes_writing():
     robot = moveit_commander.RobotCommander()
     group = moveit_commander.MoveGroupCommander("both_arms")
        
-    pose = group.get_current_pose(end_effector_link='right_gripper').pose
-    print('pose:',pose)
-    csv_writer.writerow((pose.position.x,pose.position.y,pose.position.z,pose.orientation.x,pose.orientation.y
-    ,pose.orientation.z,pose.orientation.w))
+    right_pose = group.get_current_pose(end_effector_link='right_gripper').pose
+    left_pose=group.get_current_pose(end_effector_link='left_gripper').pose
+    print('right_pose:',right_pose)
+    print('left_pose:',left_pose)
+    csv_writer.writerow((14,right_pose.position.x,right_pose.position.y,right_pose.position.z,right_pose.orientation.x,right_pose.orientation.y
+    ,right_pose.orientation.z,right_pose.orientation.w,left_pose.position.x,left_pose.position.y,left_pose.position.z,right_pose.orientation.x,left_pose.orientation.y
+    ,left_pose.orientation.z,left_pose.orientation.w,'right','open'))
 
 if __name__ == '__main__':
     try:
