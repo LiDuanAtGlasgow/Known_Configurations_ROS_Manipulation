@@ -79,6 +79,10 @@ def picknplace():
             if grippers[step]=='rl_o':
                 rightgripper.open()
                 leftgripper.open()
+            if grippers[step]=='l_c_r_o':
+                leftgripper.close()
+                rospy.sleep(2)
+                rightgripper.open() 
             else:
                 p.waitForSync()        
                 pickgoal_r = PoseStamped()
