@@ -67,13 +67,13 @@ def picknplace():
             pickgoal = PoseStamped() 
             pickgoal.header.frame_id = "base"
             pickgoal.header.stamp = rospy.Time.now()
-            pickgoal.pose.position.x = data[step%3,1]
-            pickgoal.pose.position.y = data[step%3,2]
-            pickgoal.pose.position.z = data[step%3,3]
-            pickgoal.pose.orientation.x = data[step%3,4]
-            pickgoal.pose.orientation.y = data[step%3,5]
-            pickgoal.pose.orientation.z = data[step%3,6]
-            pickgoal.pose.orientation.w = data[step%3,7]
+            pickgoal.pose.position.x = data[step%4,1]
+            pickgoal.pose.position.y = data[step%4,2]
+            pickgoal.pose.position.z = data[step%4,3]
+            pickgoal.pose.orientation.x = data[step%4,4]
+            pickgoal.pose.orientation.y = data[step%4,5]
+            pickgoal.pose.orientation.z = data[step%4,6]
+            pickgoal.pose.orientation.w = data[step%4,7]
             gr.moveToPose(pickgoal, "right_gripper", plan_only=False)
             rospy.sleep(2.0)
             if data[step%3,8]==0:
@@ -82,7 +82,7 @@ def picknplace():
                 rightgripper.open()
             print ('finished, time:',time.time()-start_time)
             start_time=time.time()
-        #g.moveToJointPosition(jts_both, pos1, plan_only=False)
+        g.moveToJointPosition(jts_both, pos1, plan_only=False)
         rospy.sleep(15.0)
 
 if __name__=='__main__':
