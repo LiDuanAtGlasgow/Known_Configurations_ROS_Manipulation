@@ -43,7 +43,7 @@ class image_convert:
 # You need to choose 'valid' points on a towel
 # 101?
 def main(args):
-    pos=3
+    pos=5
     direcorty='/home/kentuen/known_configurations_grasped_configurations/data/'+'pos_'+str(pos).zfill(4)+'/'
     if not os.path.exists(direcorty):
         os.makedirs(direcorty)

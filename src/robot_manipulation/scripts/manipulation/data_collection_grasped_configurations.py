@@ -81,7 +81,7 @@ def picknplace():
             else:
                 rightgripper.open()
             if step%2==1:
-                rospy.sleep(4.0)
+                rospy.sleep(10.0)
                 rightgripper.open()
             print ('finished, time:',time.time()-start_time)
             start_time=time.time()
