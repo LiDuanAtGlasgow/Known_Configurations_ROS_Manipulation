@@ -59,7 +59,7 @@ def picknplace():
             m+=1
     print ('step len:',n)
     col_len=2
-    n_epochs=40
+    n_epochs=10
 
     for epoch in range (n_epochs):
         for step in range (col_len):
@@ -81,7 +81,7 @@ def picknplace():
             else:
                 rightgripper.open()
             if step%2==1:
-                rospy.sleep(10.0)
+                rospy.sleep(4.0)
                 rightgripper.open()
             print ('finished, time:',time.time()-start_time)
             start_time=time.time()

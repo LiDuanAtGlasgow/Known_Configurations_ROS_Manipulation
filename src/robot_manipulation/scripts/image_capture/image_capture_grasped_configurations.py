@@ -29,8 +29,8 @@ class image_convert:
         #print ('We have started!')
         #print ('time difference:',time.time()-self.start_time)
         if time.time()-self.start_time>2:
-            cv2.imwrite('/home/kentuen/known_configurations_grasped_configurations/data/pos_'+str(self.pos).zfill(4)+'/'+str(time.time())+'_depth.png',cv_image_depth)
-            cv2.imwrite('/home/kentuen/known_configurations_grasped_configurations/data/pos_'+str(self.pos).zfill(4)+'/'+str(time.time())+'_rgb.png',cv_image_rgb)
+            cv2.imwrite('/home/kentuen/known_configurations_grasped_configurations/data/test/pos_'+str(self.pos).zfill(4)+'/'+str(time.time())+'_depth.png',cv_image_depth)
+            cv2.imwrite('/home/kentuen/known_configurations_grasped_configurations/data/test/pos_'+str(self.pos).zfill(4)+'/'+str(time.time())+'_rgb.png',cv_image_rgb)
             print ('Photo taken!')
             self.start_time=time.time()
         cv2.waitKey(3)
@@ -43,8 +43,8 @@ class image_convert:
 # You need to choose 'valid' points on a towel
 # 101?
 def main(args):
-    pos=5
-    direcorty='/home/kentuen/known_configurations_grasped_configurations/data/'+'pos_'+str(pos).zfill(4)+'/'
+    pos=4
+    direcorty='/home/kentuen/known_configurations_grasped_configurations/data/test/'+'pos_'+str(pos).zfill(4)+'/'
     if not os.path.exists(direcorty):
         os.makedirs(direcorty)
     rospy.init_node("cv_image_convertor",anonymous=True)
