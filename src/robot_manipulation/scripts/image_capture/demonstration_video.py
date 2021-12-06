@@ -41,7 +41,7 @@ class image_convert:
 # You need to choose 'valid' points on a towel
 # 101?
 def main(args):
-    no=3
+    no=4
     direcorty='/home/kentuen/known_configurations_demonstration_videos/'+'video_'+str(no).zfill(4)+'/images/'
     if not os.path.exists(direcorty):
         os.makedirs(direcorty)

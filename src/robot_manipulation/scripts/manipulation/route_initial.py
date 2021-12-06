@@ -57,7 +57,7 @@ def picknplace():
             data[m,8]=int(row['grippers'])
             m+=1
     print ('step len:',n)
-    col_len=4
+    col_len=2
     n_epochs=1
 
     for epoch in range (n_epochs):
