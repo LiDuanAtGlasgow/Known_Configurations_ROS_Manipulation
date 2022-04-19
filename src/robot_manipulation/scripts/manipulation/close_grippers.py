@@ -1,5 +1,6 @@
 #type:ignore
 import time
+from turtle import left
 import rospy
 import roslib 
 roslib.load_manifest("moveit_python")
@@ -18,6 +19,8 @@ def gripper_close():
     rightgripper=baxter_interface.Gripper('right')
     rightgripper.calibrate()
     rightgripper.close()
+    #leftgripper.calibrate()
+    #leftgripper.close()
 
 if __name__=='__main__':
     try:

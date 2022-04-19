@@ -45,7 +45,6 @@ def picknplace():
     while n>0:
         n-=1
         p.waitForSync()        
-        #g.moveToJointPosition(jts_both, pos2, plan_only=False)
 
         pickgoal = PoseStamped() 
         pickgoal.header.frame_id = "base"

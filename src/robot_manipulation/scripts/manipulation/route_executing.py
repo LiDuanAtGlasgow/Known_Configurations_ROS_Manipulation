@@ -12,6 +12,7 @@ from operator import itemgetter
 import moveit_commander
 import csv
 import numpy as np
+import argparse
 
 def picknplace():
     p = PlanningSceneInterface("base")
@@ -29,10 +30,17 @@ def picknplace():
     lpos2 = [-0.949534106616211, 1.4994662184448244, -0.6036214393432617, -0.7869321432861328, -2.4735440176391603, -1.212228316241455, -0.8690001153442384]    
     rpos1 = [1.7238109084167481, 1.7169079948791506, 0.36930587426147465, -0.33249033539428713, -1.2160632682067871, 1.668587600115967, -1.810097327636719]
     rpos2 = [1.8342575250183106, 1.8668546167236328, -0.45674277907104494, -0.21667478604125978, -1.2712865765075685, 1.7472041154052735, -2.4582042097778323]
-    #g.moveToJointPosition(jts_both, pos1, plan_only=False)
 
+    parser = argparse.ArgumentParser(description='Known Configurations Manipulation Routes')
+    parser.add_argument('--shape', type=str, default='none',
+                        help='recoginsed garment shape')
+    parser.add_argument('--pos', type=int, default=0,
+                        help='recognised garment-grasping point')
+    args = parser.parse_args()
+
+    name='./routes/'+args.shape+'/pos'+str(args.pos).zfill(4)+'/routes.csv'
     start_time=time.time()
-    with open ('routes.csv','rb') as csvfile:
+    with open (name,'rb') as csvfile:
         reader=csv.DictReader(csvfile)
         n=0
         for row in reader:
@@ -40,7 +48,7 @@ def picknplace():
         data=np.ones((n,17))
     directions=[]
     grippers=[]
-    with open ('routes.csv','rb') as csvfile:
+    with open (name,'rb') as csvfile:
         reader=csv.DictReader(csvfile)
         m=0
         for row in reader:
@@ -116,10 +124,17 @@ def picknplace():
                     rospy.sleep(2.0)
                     gl.moveToPose(pickgoal_l, "left_gripper", plan_only=False)
                     rospy.sleep(2.0)
+            if grippers[step]=='w_r_c':
+                rightgripper.close()
+            if grippers[step]=='w_r_o_l_o':
+                rightgripper.open()
+                leftgripper.open()
+            if grippers[step]=='w_r_o_l_c':
+                rightgripper.open()
+                leftgripper.close()
+                
             print ('step',step+1,'finished, time:',time.time()-start_time)
             start_time=time.time()
-        #g.moveToJointPosition(jts_both, pos1, plan_only=False)
-        #rospy.sleep(15.0)
 
 if __name__=='__main__':
     try:

@@ -18,6 +18,8 @@ def gripper_open():
     rightgripper=baxter_interface.Gripper('right')
     rightgripper.calibrate()
     rightgripper.open()
+    leftgripper.calibrate()
+    leftgripper.open()
 
 if __name__=='__main__':
     try:
