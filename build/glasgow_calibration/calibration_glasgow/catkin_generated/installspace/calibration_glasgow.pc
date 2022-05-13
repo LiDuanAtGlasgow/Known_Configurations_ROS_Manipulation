@@ -1,0 +1,8 @@
+prefix=/home/kentuen/ros_ws/install
+
+Name: calibration_glasgow
+Description: Description of calibration_glasgow
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: cv_bridge image_transport roscpp rospy smach smach_ros std_msgs tf message_runtime sensor_msgs geometry_msgs

@@ -32,7 +32,7 @@ def grasp():
         left_target_pose = left_current_pose
         #left_target_pose.position.z = left_current_pose.position.z +(-1)**(i)*0.1
         right_target_pose=right_current_pose
-        #right_target_pose.position.z = right_current_pose.position.z +(-1)**(i)*0.8
+        right_target_pose.position.z = right_current_pose.position.z +(-1)**(i)*0.8
 
         right_target_pose = right_current_pose
 

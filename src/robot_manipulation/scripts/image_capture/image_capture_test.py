@@ -26,8 +26,6 @@ class image_convert:
         cv_image_depth=self.bridge.imgmsg_to_cv2(image_depth,"16UC1")
         max_meter=3
         cv_image_depth=np.array(cv_image_depth/max_meter,dtype=np.uint8)
-        #print ('We have started!')
-        #print ('time difference:',time.time()-self.start_time)
         if time.time()-self.start_time>2:
             cv2.imwrite('/home/kentuen/known_configurations_grasped_configurations/data/test/test_images/'+str(time.time())+'_depth.png',cv_image_depth)
             cv2.imwrite('/home/kentuen/known_configurations_grasped_configurations/data/test/test_images/'+str(time.time())+'_rgb.png',cv_image_rgb)

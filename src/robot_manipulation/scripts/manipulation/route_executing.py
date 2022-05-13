@@ -38,7 +38,7 @@ def picknplace():
                         help='recognised garment-grasping point')
     args = parser.parse_args()
 
-    name='./routes/'+args.shape+'/pos'+str(args.pos).zfill(4)+'/routes.csv'
+    name='./routes/'+args.shape+'s/pos_'+str(args.pos).zfill(4)+'/routes.csv'
     start_time=time.time()
     with open (name,'rb') as csvfile:
         reader=csv.DictReader(csvfile)

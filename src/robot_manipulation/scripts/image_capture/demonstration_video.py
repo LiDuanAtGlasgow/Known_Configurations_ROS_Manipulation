@@ -26,8 +26,6 @@ class image_convert:
         cv_image_depth=self.bridge.imgmsg_to_cv2(image_depth,"16UC1")
         max_meter=3
         cv_image_depth=np.array(cv_image_depth/max_meter,dtype=np.uint8)
-        #print ('We have started!')
-        #print ('time difference:',time.time()-self.start_time)
         cv2.imwrite('/home/kentuen/known_configurations_demonstration_videos/'+'video_'+str(self.no).zfill(4)+'/images/'+str(time.time())+'_depth.png',cv_image_depth)
         cv2.imwrite('/home/kentuen/known_configurations_demonstration_videos/'+'video_'+str(self.no).zfill(4)+'/images/'+str(time.time())+'_rgb.png',cv_image_rgb)
         self.start_time=time.time()
@@ -38,8 +36,6 @@ class image_convert:
         self.time_sychronization.registerCallback(self.callback)
 
 
-# You need to choose 'valid' points on a towel
-# 101?
 def main(args):
     no=4
     direcorty='/home/kentuen/known_configurations_demonstration_videos/'+'video_'+str(no).zfill(4)+'/images/'

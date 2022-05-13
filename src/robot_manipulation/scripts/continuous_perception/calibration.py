@@ -41,10 +41,10 @@ def calibration():
     else:
         group.go(wait=True)
 
-    left_gripper.calibrate()
-    right_gripper.calibrate()
-    left_gripper.open()
-    right_gripper.open()
+    #left_gripper.calibrate()
+    #right_gripper.calibrate()
+    #left_gripper.open()
+    #right_gripper.open()
         
     moveit_commander.roscpp_shutdown()
     moveit_commander.os._exit(0)

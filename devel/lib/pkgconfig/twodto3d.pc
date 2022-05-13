@@ -1,0 +1,8 @@
+prefix=/home/kentuen/ros_ws/devel
+
+Name: twodto3d
+Description: Description of twodto3d
+Version: 0.0.0
+Cflags: -I/home/kentuen/ros_ws/devel/include
+Libs: -L${prefix}/lib -ltwodto3d
+Requires: baxter_core_msgs

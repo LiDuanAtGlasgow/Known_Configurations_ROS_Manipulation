@@ -22,9 +22,9 @@ def routes_writing():
     left_pose=group.get_current_pose(end_effector_link='left_gripper').pose
     print('right_pose:',right_pose)
     print('left_pose:',left_pose)
-    csv_writer.writerow((28,right_pose.position.x,right_pose.position.y,right_pose.position.z,right_pose.orientation.x,right_pose.orientation.y
+    csv_writer.writerow((1,right_pose.position.x,right_pose.position.y,right_pose.position.z,right_pose.orientation.x,right_pose.orientation.y
     ,right_pose.orientation.z,right_pose.orientation.w,left_pose.position.x,left_pose.position.y,left_pose.position.z,right_pose.orientation.x,left_pose.orientation.y
-    ,left_pose.orientation.z,left_pose.orientation.w,'both','open'))
+    ,left_pose.orientation.z,left_pose.orientation.w,'right','open'))
 
 if __name__ == '__main__':
     try:
