@@ -1,0 +1,8 @@
+prefix=/home/kentuen/ros_ws/devel
+
+Name: pcl_cloud_point
+Description: Description of pcl_cloud_point
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
