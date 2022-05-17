@@ -28,7 +28,7 @@ def routes_writing():
 
 if __name__ == '__main__':
     try:
-        name='./routes.csv'
+        name='./routes_handeye_cb.csv'
         f=open(name,'a')
         csv_writer=csv.writer(f)
         routes_writing()
