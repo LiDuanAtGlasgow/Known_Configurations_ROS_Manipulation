@@ -32,7 +32,7 @@ def picknplace():
     rpos2 = [1.8342575250183106, 1.8668546167236328, -0.45674277907104494, -0.21667478604125978, -1.2712865765075685, 1.7472041154052735, -2.4582042097778323]
 
 
-    name='./routes.csv'
+    name='./routes_handeye_cb_stage_3.csv'
     start_time=time.time()
     with open (name,'rb') as csvfile:
         reader=csv.DictReader(csvfile)
@@ -120,12 +120,15 @@ def picknplace():
                     rospy.sleep(2.0)
             if grippers[step]=='w_r_c':
                 rightgripper.close()
+            if grippers[step]=='w_l_c':
+                leftgripper.close()
             if grippers[step]=='w_r_o_l_o':
                 rightgripper.open()
                 leftgripper.open()
             if grippers[step]=='w_r_o_l_c':
-                rightgripper.open()
                 leftgripper.close()
+                rospy.sleep(2.0)
+                rightgripper.open()
                 
             print ('step',step+1,'finished, time:',time.time()-start_time)
             start_time=time.time()

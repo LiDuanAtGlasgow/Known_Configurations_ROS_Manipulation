@@ -23,12 +23,12 @@ def routes_writing():
     print('right_pose:',right_pose)
     print('left_pose:',left_pose)
     csv_writer.writerow((1,right_pose.position.x,right_pose.position.y,right_pose.position.z,right_pose.orientation.x,right_pose.orientation.y
-    ,right_pose.orientation.z,right_pose.orientation.w,left_pose.position.x,left_pose.position.y,left_pose.position.z,right_pose.orientation.x,left_pose.orientation.y
-    ,left_pose.orientation.z,left_pose.orientation.w,'right','open'))
+    ,right_pose.orientation.z,right_pose.orientation.w,left_pose.position.x,left_pose.position.y,left_pose.position.z,left_pose.orientation.x,
+    left_pose.orientation.y,left_pose.orientation.z,left_pose.orientation.w,'right','open'))
 
 if __name__ == '__main__':
     try:
-        name='./routes_handeye_cb.csv'
+        name='./routes_handeye_cb_stage_2.csv'
         f=open(name,'a')
         csv_writer=csv.writer(f)
         routes_writing()
